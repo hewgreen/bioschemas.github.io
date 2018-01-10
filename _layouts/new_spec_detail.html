@@ -47,24 +47,24 @@
                     <tbody>
                     {% assign  marginality_list = "Minimum,Recommended,Optional" | split: ',' %}
                     {% for current_mg in marginality_list %}
-                    {% if page.properties != null %}
-                      {% assign props_list = page.properties | where: 'marginality', current_mg | sort: 'name' %}
-                    {% else %}
-                      {% assign props_list = page.properties | where: 'marginality', current_mg  %}
-                    {% endif %}
-                        {%if props_list.size > 0%}
+                      {% if page.properties != null %}
+                        {% assign props_list = page.properties | where: 'marginality', current_mg | sort: 'name' %}
+                      {% else %}
+                        {% assign props_list = page.properties | where: 'marginality', current_mg  %}
+                      {% endif %}
+                      {%if props_list.size > 0%}
                         <tr class="cardinality">
                             <td colspan="6">
                                 Marginality: <b class="{{current_mg}}">{{current_mg}}.</b>
                             </td>
                         </tr>
-                        {%endif%}
-                        {% for prop in props_list %}
+                      {%endif%}
+                      {% for prop in props_list %}
                             <tr>
-                                {% if prop.name contains "bioschema" %}
-                                  <th>{{prop.name}}</th>
+                                {% if prop.property_url %}
+                                  <th><a href="{{prop.property_url}}">{{prop.name}}</a></th>
                                 {% else %}
-                                  <th><a href="http://schema.org/{{prop.name}}">{{prop.name}}</a></th>
+                                  <th>{{prop.name}}</th>
                                 {% endif %}
                                 <td>
                                     {% for temp_exp_type in prop.expected_type %}
@@ -78,19 +78,17 @@
                                 <td><em><u>Schema</u>: </em>{{prop.sdo_desc}}<br><em><u>Bioschemas</u>: </em>{{prop.bsc_dec}}</td>
                                 <td>{{prop.cardinality}}</td>
                                 <td>
-                                    {% for cv in prop.controlled_vocab%}
-                                    {% for ontology in cv[1]%}
-                                    <a href="http://{{ontology.url}}">{{ontology.name}}</a>
-                                    {%endfor%}
-                                    {% for term in cv[2]%}
-                                    {{term.name}}
-                                    {%endfor%}
-                                    {%endfor%}
+                                    {% assign cv = prop.controlled_vocab %}
+                                    {% for ont in cv.ontologies %}
+                                      <a href="{{ont.url}}">{{ont.name}}</a><br />
+                                    {% endfor %}
+                                    {% for term in cv.terms %}
+                                      {{ term.name }}<br />
+                                    {% endfor %}
                                 </td>
                             </tr>
                         {% endfor %}
-                    {% endfor%}
-
+                      {% endfor %}
                     </tbody>
                 </table>
 

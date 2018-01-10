@@ -53,7 +53,11 @@
                         {%endif%}
                         {% for new_prop in new_props%}
                             <tr>
+                              {% if new_prop.property_url %}
+                                <th><a href="{{new_prop.property_url}}">{{new_prop.name}}</a></th>
+                              {% else %}
                                 <th>{{new_prop.name}}</th>
+                              {% endif %}
                                 <td>
                                     {% for temp_exp_type in new_prop.expected_type %}
                                       {% if temp_exp_type == "PhysicalEntity" or temp_exp_type == "LabProtocol" or temp_exp_type == "DataRecord" or temp_exp_type == "BioChemEntity" %}
