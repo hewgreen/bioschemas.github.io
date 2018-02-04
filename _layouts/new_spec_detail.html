@@ -11,7 +11,7 @@
 <div class="page-content">
     <div class="wrapper">
         <div id="main_content_wrap" class="outer">
-            <section id="main_content" class="inner">
+            <section id="main_content" class="inner" style="position:relative">
                 <h1>{{page.name}} Specification v. {{page.version}}</h1>
                 <h2>{{page.subtitle}}</h2>
                 <h3>{{page.spec_type}}</h3>
@@ -91,10 +91,22 @@
                       {% endfor %}
                     </tbody>
                 </table>
-
-
-
             </section>
+
+            <section id="authorList" class="author">
+              <h3>Developers</h3>
+              <p>The following people have contributed to the creation of this specification document.</p>
+              <h5>Editor(s)</h5>
+              {% for contributor in page.contributors.editors %}
+                  {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
+              {% endfor %}
+              <br />
+              <h5>Team members</h5>
+              {% for contributor in page.contributors.contributors %}
+                  {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
+              {% endfor %}
+            </section>
+
         </div>
     </div>
 </div>
