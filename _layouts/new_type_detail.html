@@ -99,6 +99,7 @@
             </section>
 
             <section id="authorList" class="author">
+              {% if page.contributors == true %}
               <h3>Developers</h3>
               <p>The following people have contributed to the creation of this specification document.</p>
               <h5>Editor(s)</h5>
@@ -110,6 +111,7 @@
               {% for contributor in page.contributors.contributors %}
                   {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
               {% endfor %}
+              {% endif %}
             </section>
         </div>
     </div>
