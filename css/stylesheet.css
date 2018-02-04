@@ -342,6 +342,13 @@ Full-Width Styles
     text-decoration: none;
 }
 
+.author {
+    position: fixed;
+    top:25%;
+    width: 10%;
+    padding: 10px 16px;
+ }
+
 #main_content_wrap {
     background: #fefefe;
 }
@@ -880,11 +887,17 @@ path {
 
 */
 
+
+
 /*******************************************************************************
 Small Device Styles
 *******************************************************************************/
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1300px) {
+    .author { display: none; }
+}
+
+@media screen and (max-width: 800px) {
     .trigger {
         z-index: 500;
         top: 0;
@@ -1011,6 +1024,8 @@ Small Device Styles
         margin-left: 0;
         padding-left: 0.3125em;
     }
+
+    .author { display: none; }
 
     #project_title {
         font-size: 32px;
