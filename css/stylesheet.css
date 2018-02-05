@@ -894,7 +894,9 @@ Small Device Styles
 *******************************************************************************/
 
 @media screen and (max-width: 1300px) {
-    .author { display: none; }
+    .author {
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -1025,7 +1027,9 @@ Small Device Styles
         padding-left: 0.3125em;
     }
 
-    .author { display: none; }
+    .author {
+        display: none !important;
+    }
 
     #project_title {
         font-size: 32px;
