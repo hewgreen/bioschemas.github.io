@@ -97,10 +97,10 @@
                     </tbody>
                 </table>
             </section>
-
-            <section id="authorList" class="author">
-              {% if page.contributors == true %}
-              <h3>Developers</h3>
+            <br />
+            <section id="authorListBottom" class="inline">
+              {% if page.contributors.contributors.size != 0 %}
+              <h3>Acknowledgements:</h3>
               <p>The following people have contributed to the creation of this specification document.</p>
               <h5>Editor(s)</h5>
               {% for contributor in page.contributors.editors %}
@@ -113,6 +113,13 @@
               {% endfor %}
               {% endif %}
             </section>
+        </section>
+
+        <section id="authorList" class="author">
+          {% if page.contributors.contributors.size != 0 %}
+          <p>For information on the developers of this specification, <a href="#authorListBottom">click here</a>.</p>
+          {% endif %}
+        </section>
         </div>
     </div>
 </div>

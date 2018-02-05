@@ -11,7 +11,7 @@
 <div class="page-content">
     <div class="wrapper">
         <div id="main_content_wrap" class="outer">
-            <section id="main_content" class="inner" style="position:relative">
+            <section id="main_content" class="inner">
                 <h1>{{page.name}} Specification v. {{page.version}}</h1>
                 <h2>{{page.subtitle}}</h2>
                 <h3>{{page.spec_type}}</h3>
@@ -33,6 +33,11 @@
                 <h3>Description: </h3>
                 <p>{{page.description}}</p>
                 <br>
+
+
+                {% if page.gh_examples != null %}
+                <p><a href="{{page.gh_examples}}">Click here</a> for examples of how to use the specification.</p>
+                {% endif %}
 
                 <table class="bioschemas_properties">
                     <thead>
@@ -91,24 +96,29 @@
                       {% endfor %}
                     </tbody>
                 </table>
+                <br />
+                <section id="authorListBottom" class="inline">
+                  {% if page.contributors.contributors.size != 0 %}
+                  <h3>Acknowledgements:</h3>
+                  <p>The following people have contributed to the creation of this specification document.</p>
+                  <h5>Editor(s)</h5>
+                  {% for contributor in page.contributors.editors %}
+                      {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
+                  {% endfor %}
+                  <br />
+                  <h5>Team members</h5>
+                  {% for contributor in page.contributors.contributors %}
+                      {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
+                  {% endfor %}
+                  {% endif %}
+                </section>
             </section>
 
             <section id="authorList" class="author">
-              {% if page.contributors == true %}
-              <h3>Developers</h3>
-              <p>The following people have contributed to the creation of this specification document.</p>
-              <h5>Editor(s)</h5>
-              {% for contributor in page.contributors.editors %}
-                  {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
-              {% endfor %}
-              <br />
-              <h5>Team members</h5>
-              {% for contributor in page.contributors.contributors %}
-                  {{ contributor.name }},  <i>{{ contributor.institution}}</i><br/>
-              {% endfor %}
+              {% if page.contributors.contributors.size != 0 %}
+              <p>For information on the developers of this specification, <a href="#authorListBottom">click here</a>.</p>
               {% endif %}
             </section>
-
         </div>
     </div>
 </div>
